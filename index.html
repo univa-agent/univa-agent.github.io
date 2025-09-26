@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVA - Universal Video Agents towards Next-Generation Video Intelligence</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/univa_style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#task1" class="nav-link">Interactive</a>
+                <a href="#task2" class="nav-link">Any-Cond</a>
+                <a href="#task3" class="nav-link">Long Gen</a>
+                <a href="#task4" class="nav-link">Complex</a>
+                <a href="#task5" class="nav-link">Style</a>
+                <a href="#task6" class="nav-link">Editing</a>
+                <a href="#task7" class="nav-link">Analysis</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="univa-main-title">UniVA: Universal Video Agents towards Next-Generation Video Intelligence</h1>
+
+    <div class="authors-section">
+        <div class="authors-list">
+            <div style="text-align: center; font-size: 1.1em; color: #666; font-style: italic;">
+                Anonymous Submission
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <a href="#" target="_blank" class="univa-button">
+            <img src="asserts/icons/pdf.svg">
+            Paper
+        </a>
+    </div>
+
+    <div class="univa-news-container">
+        <h3>🎉 News</h3>
+        <p>2025.08.22: UniVA project page is officially launched!</p>
+        <p>2025.08.20: Integration with Wan2.1 for advanced video generation</p>
+        <p>2025.08.15: Multi-agent architecture with Plan & Act agents deployed</p>
+        <p>2025.08.10: Support for 15+ video editing and generation tools added</p>
+    </div>
+
+    <h2 style="padding-top: 30px;">「UniVA」Unified Video Agent System</h2>
+    <p class="desc">UniVA is a revolutionary multi-agent system that orchestrates complex video creation workflows through intelligent planning and execution. <br>The system understands user intent, creates detailed plans, and coordinates multiple AI models to produce professional-quality videos.</p>
+    
+    <div class="one-page-box">
+        <div class="carousel">
+            <div style="display: flex; margin-bottom: 20px;">
+                <p class="tiny-title pc-only" style="margin: auto;">Input</p>
+                <p class="tiny-title pc-only" style="margin: auto;">Output</p>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <img src="asserts/demos/object_consistency/girl_dance/0722213202_1.jpg" style="width: 100%; height: auto;">
+                        </div>
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <p>Character Consistency: Dancing Girl</p>
+                </div>
+                <div class="carousel-item">
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <img src="asserts/demos/any_conditioned/sketch2video/tank_sketch.jpeg" style="width: 100%; height: auto;">
+                        </div>
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/any_conditioned/sketch2video/sketch2vid.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <p>Sketch to Video: Tank Generation</p>
+                </div>
+                <div class="carousel-item">
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/any_conditioned/video2video/woman_smile_turn_around.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/any_conditioned/video2video/shortvideo2video.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <p>Video to Video: Style Enhancement</p>
+                </div>
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/demos/object_consistency/cola_ad/0722183105_I_want_to_generate_a_30-second_Coca-Cola_ad..mp4" type="video/mp4">
+                    </video>
+                    <p>Coca-Cola Ad with Object Consistency Demo</p>
+                </div>
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4" type="video/mp4">
+                    </video>
+                    <p>Bread Talk Advertisement Demo</p>
+                </div>
+                <div class="carousel-item">
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/style_transfer/woman_cartoon/src_video.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/style_transfer/woman_cartoon/out_video.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <p>Style Transfer: Cartoon Transformation</p>
+                </div>
+                <div class="carousel-item">
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/video_editing/swap_anything/ori_video.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/video_editing/swap_anything/out_video.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <p>Video Editing: Object Replacement</p>
+                </div>
+                <div class="carousel-item">
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/analysis_segmentation/main_object_seg_analysis/20250601_A_cinematic_profile_portrait_of_a_fitness_model_wi.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div style="flex: 1;">
+                            <video autoplay loop muted playsinline style="width: 100%;">
+                                <source src="asserts/demos/analysis_segmentation/main_object_seg_analysis/woman_seg.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <p>Video Segmentation: Subject Isolation</p>
+                </div>
+            </div>
+            <div class="carousel-ctrl">
+                <button class="carousel-btn prev" onclick="prevSlide()">
+                    <img src="asserts/icons/prev.svg">
+                </button>
+                <div class="dots-container"></div>
+                <button class="carousel-btn next" onclick="nextSlide()">
+                    <img src="asserts/icons/next.svg">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <h2>「Multi-Agent Architecture」Plan & Act Agents</h2>
+        <p class="desc">
+            UniVA employs a sophisticated dual-agent architecture where the Plan Agent strategizes and the Act Agent executes,<br>enabling complex video workflows that adapt based on intermediate results.
+        </p>
+        <div class="figure-container">
+            <img style="max-width: 960px; width: 100%;" src="asserts/figures/pipe.png"></img>
+        </div>
+        
+        <h3>Plan Agent - <span class="accent-red">DeepSeek-R1-0528</span></h3>
+        <p class="desc">
+            Receives user input and generates detailed, complete plans. Sends execution steps to Act Agent and dynamically updates plans based on execution results.
+        </p>
+        
+        <h3>Act Agent - <span class="accent-green">Claude-Sonnet-4</span></h3>
+        <p class="desc">
+            Receives commands from Plan Agent, selects appropriate tools, executes operations, and returns results for plan refinement.
+        </p>
+    </div>
+    
+    <h2>「Core Capabilities」7 Major Functions</h2>
+    <p class="desc">UniVA delivers comprehensive video creation capabilities through 7 core functions,<br>each designed to handle complex real-world video production scenarios.</p>
+    
+    <div class="highlight task-section" id="task1" style="margin-top: 40px;">
+        <h3><span class="section-badge">1</span>Interactive Creation via Multi-Round Dialogue</h3>
+        <p class="desc">
+            Create videos through iterative conversations. Each round can invoke different tools (T2V Gen, Video Edit) to progressively refine content based on user feedback.
+        </p>
+        <div class="video-container" style="margin-top: 20px;">
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Round 1</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/videos/dataset/rf27_veryslow/00177989_src.mp4" type="video/mp4">
+                </video>
+                <p>Initial generation</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Round 2</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/videos/dataset/rf27_veryslow/00177989_crop.mp4" type="video/mp4">
+                </video>
+                <p>User refinement</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Round 3</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/videos/dataset/rf27_veryslow/00177989_mask.mp4" type="video/mp4">
+                </video>
+                <p>Final adjustments</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight task-section" id="task2" style="background-color: transparent; padding-top: 40px;">
+        <h3><span class="section-badge">2</span>Any-Conditioned Video Generation</h3>
+        <p class="desc">
+            Generate videos from diverse input conditions: text, images, videos, sketches, camera angles, or human poses.
+        </p>
+        <div class="video-container" style="margin-top: 20px;">
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Sketch Input</p>
+                <img src="asserts/demos/any_conditioned/sketch2video/tank_sketch.jpeg" style="width: 100%; height: auto; border-radius: 4px;">
+                <p>Tank sketch drawing</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Sketch→Video Output</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/any_conditioned/sketch2video/sketch2vid.mp4" type="video/mp4">
+                </video>
+                <p>Generated tank video</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Video Input</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/any_conditioned/video2video/woman_smile_turn_around.mp4" type="video/mp4">
+                </video>
+                <p>Original video</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Video→Video Output</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/any_conditioned/video2video/shortvideo2video.mp4" type="video/mp4">
+                </video>
+                <p>Enhanced video</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight task-section" id="task3" style="padding-top: 40px;">
+        <h3><span class="section-badge">3</span>Long Video Generation with Object Consistency</h3>
+        <p class="desc">
+            Generate extended videos maintaining high-quality consistency for objects (people, items) across time.<br>
+            Supports both single-subject and multi-subject scenarios with natural temporal variations.
+        </p>
+        <div class="video-container" style="margin-top: 20px;">
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Girl Dance</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4" type="video/mp4">
+                </video>
+                <p>Consistent character dance sequence</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Cola Advertisement</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/object_consistency/cola_ad/0722183105_I_want_to_generate_a_30-second_Coca-Cola_ad..mp4" type="video/mp4">
+                </video>
+                <p>Consistent branding and characters</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Laptop Interaction</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/object_consistency/old_man_woman_laptop/0722212805_I_want_to_generate_a_video._The_video_depicts_an_e.mp4" type="video/mp4">
+                </video>
+                <p>Multiple subjects with objects</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight task-section" id="task4" style="background-color: transparent; padding-top: 40px;">
+        <h3><span class="section-badge">4</span>Complex Long Video Generation</h3>
+        <p class="desc">
+            Process complex instructions to generate rich, multi-scene videos with various characters, camera angles, and temporal spans.<br>
+            Accurately understand and express complex narratives.
+        </p>
+        <div class="video-container" style="margin-top: 20px;">
+            <div class="video-item" style="position: relative;">
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4" type="video/mp4">
+                </video>
+                <p>Bread Talk commercial narrative</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/complex_generation/bread_talk_ad_with_audio/0728171745_Please_generate_a_20-second_advertising_video_base.mp4" type="video/mp4">
+                </video>
+                <p>Multi-modal commercial with audio</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/object_consistency/cola_ad/0722183105_I_want_to_generate_a_30-second_Coca-Cola_ad..mp4" type="video/mp4">
+                </video>
+                <p>Brand-focused storytelling</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight task-section" id="task5" style="padding-top: 40px;">
+        <h3><span class="section-badge">5</span>Long Video Style Transfer</h3>
+        <p class="desc">
+            Transform entire videos into different artistic styles (animation, vintage, noir) while preserving content structure and narrative flow.
+        </p>
+        <div class="video-container" style="margin-top: 20px;">
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Original Video</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/style_transfer/woman_cartoon/src_video.mp4" type="video/mp4">
+                </video>
+                <p>Source footage</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Segmentation Mask</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/style_transfer/woman_cartoon/src_mask.mp4" type="video/mp4">
+                </video>
+                <p>Subject isolation</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Cartoon Style Output</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/style_transfer/woman_cartoon/out_video.mp4" type="video/mp4">
+                </video>
+                <p>Transformed result</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight task-section" id="task6" style="background-color: transparent; padding-top: 40px;">
+        <h3><span class="section-badge">6</span>Video Editing (VACE Benchmark)</h3>
+        <p class="desc">
+            Edit foreground objects or backgrounds precisely. Replace people, objects, or scenes with fine-grained control.<br>
+            Supports long video editing with temporal consistency.
+        </p>
+        <div class="video-container" style="margin-top: 20px;">
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Swap Anything</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/video_editing/swap_anything/out_video.mp4" type="video/mp4">
+                </video>
+                <p>Smart object replacement</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Video Inpainting</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/video_editing/inpainting/out_video.mp4" type="video/mp4">
+                </video>
+                <p>Content removal and filling</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Pose Editing</p>
+                <span class="video-label">Demo</span>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/video_editing/pose/out_video.mp4" type="video/mp4">
+                </video>
+                <p>Pose-guided editing</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight task-section" id="task7" style="padding-top: 40px;">
+        <h3><span class="section-badge">7</span>Analysis with Video Segmentation</h3>
+        <p class="desc">
+            Comprehensive video analysis through advanced segmentation. Identify and separate objects, people, and scenes for detailed understanding and reasoning.
+        </p>
+        <div class="video-container" style="margin-top: 20px; justify-content: center;">
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Original Input</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/analysis_segmentation/main_object_seg_analysis/20250601_A_cinematic_profile_portrait_of_a_fitness_model_wi.mp4" type="video/mp4">
+                </video>
+                <p>Fitness model portrait</p>
+            </div>
+            <div class="video-item" style="position: relative;">
+                <p class="tiny-title">Segmentation Output</p>
+                <video autoplay loop muted playsinline>
+                    <source src="asserts/demos/analysis_segmentation/main_object_seg_analysis/woman_seg.mp4" type="video/mp4">
+                </video>
+                <p>Subject isolation & analysis</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>「Tools Arsenal」State-of-the-Art Models</h2>
+    
+    <div class="video-container">
+        <div class="video-item">
+            <p class="tiny-title">Video Generation</p>
+            <p style="text-align: left; font-size: 0.9em;">
+                <strong>• Wan2.1:</strong> Text to video<br>
+                <strong>• I2V Models:</strong> Image animation<br>
+                <strong>• Story Gen:</strong> Narrative videos<br>
+                <strong>• Extension:</strong> Video lengthening
+            </p>
+        </div>
+        <div class="video-item">
+            <p class="tiny-title">Video Editing</p>
+            <p style="text-align: left; font-size: 0.9em;">
+                <strong>• VACE:</strong> Object editing<br>
+                <strong>• Style Transfer:</strong> Artistic conversion<br>
+                <strong>• Recoloring:</strong> Color manipulation<br>
+                <strong>• Inpainting:</strong> Content filling
+            </p>
+        </div>
+        <div class="video-item">
+            <p class="tiny-title">Video Segmentation</p>
+            <p style="text-align: left; font-size: 0.9em;">
+                <strong>• SAM2:</strong> Segment anything<br>
+                <strong>• Sa2va:</strong> Video segmentation<br>
+                <strong>• Tracking:</strong> Object following<br>
+                <strong>• Masking:</strong> Region selection
+            </p>
+        </div>
+        <div class="video-item">
+            <p class="tiny-title">Image Generation</p>
+            <p style="text-align: left; font-size: 0.9em;">
+                <strong>• Midjourney:</strong> High-quality images<br>
+                <strong>• T2I Models:</strong> Text to image<br>
+                <strong>• I2I Transfer:</strong> Style transfer<br>
+                <strong>• Enhancement:</strong> Quality boost
+            </p>
+        </div>
+    </div>
+
+    <div class="highlight" style="margin-top: 100px;">
+        <h2>System Architecture</h2>
+        <p class="abstract">
+            UniVA revolutionizes video creation by introducing an intelligent multi-agent system that understands the iterative nature of creative workflows.
+            Unlike traditional single-task models that excel in isolation, UniVA orchestrates multiple state-of-the-art models through a sophisticated planning and execution framework.
+            The Plan Agent, powered by DeepSeek-R1, interprets user intent and creates comprehensive strategies, while the Act Agent, powered by Claude-Sonnet-4, precisely executes tasks using an extensive toolkit.
+            This architecture enables seamless transitions between different video operations - from initial generation to editing, style transfer, and final composition.
+            The system's key innovation lies in its content-aware workflow management, where each step's output directly influences subsequent operations, ensuring coherent and professional results.
+        </p>
+
+        <div class="button-container" style="margin-top: 30px; margin-bottom: 100px;">
+            <button onclick="scrollToTop()" class="button">
+                <img src="asserts/icons/up-arrow.svg">
+                Back to Top
+            </button>
+        </div>
+    </div>
+
+    <script src="js/base.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/sync_play.js"></script>
+    <script>
+        // Navigation highlighting
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active section highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.task-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+.one-page-box {
+    width: 100%;
+    overflow: hidden; 
+}
+
+.carousel {
+    position: relative;
+    width: 90%;
+    max-width: 1440px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 10%;
+}
+
+.carousel-item {
+    min-width: 100%;
+}
+
+.carousel-item video {
+    width: 100%;
+    max-height: 480px;
+    border-radius: 20px;
+}
+
+.iframe-container {
+    position: relative;
+    width: 100%;
+    max-height: 480px;
+    padding-top: 33.33%;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+}
+
+.carousel-btn {
+    width: 50px;
+    height: 50px;
+    color: #666;
+    background-color: #EAF2FD;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-btn:hover {
+    background-color: #cdd7e4;
+}
+.carousel-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.carousel-btn.prev {
+    margin-right: auto;
+}
+
+.carousel-btn.next {
+    margin-left: auto;
+}
+
+.carousel-ctrl {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    display: inline-flex;
+    margin: 5px;
+}
+
+.dot.active {
+    transform: scale(1.5);
+}

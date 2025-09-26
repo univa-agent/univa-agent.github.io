@@ -1,0 +1,208 @@
+body {
+    background-color: #131927;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'GeForce';
+    src: url('../asserts/fonts/GeForce_Bold.otf') format('opentype'),
+        url('../asserts/fonts/GeForce_Light.otf') format('opentype');
+}
+h1 {
+    margin-top: 50px;
+    font-size: 3em;
+    font-family: 'GeForce';
+    /* color: #6285EA; */
+    background-image: linear-gradient(to right, #08C5FF, #6DE2B4); /* 渐变颜色 */
+    color: transparent; /* 设置文字颜色透明 */
+    -webkit-background-clip: text; /* 仅显示文字部分的背景 */
+    padding: 20px;
+    padding-top: 100px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+h2 {
+    font-size: 2em;
+    color: #EAF2FD;
+    font-family: 'GeForce';
+    padding-top: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+h3 {
+    font-size: 1.8em;
+    color: #EAF2FD;
+    font-family: 'GeForce';
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+video {
+    background-color: #1c253a;
+}
+p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #EAF2FD;
+}
+.desc{
+    color: #93a1b3;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.important-desc {
+    font-size: 1.2rem;
+    font-family: 'GeForce';
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.abstract {
+    padding-left: 30px;
+    padding-right: 30px;
+    max-width: 720px;
+    text-align: justify;
+    display: flex;
+    margin: auto;
+    line-height: 24px;
+}
+.metadata {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 1.2rem
+}
+.tiny-title {
+    font-family: GeForce; 
+    font-weight: bold; 
+    font-size: 1.5rem;
+    text-align: center;
+}
+.button-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.button {
+    padding: 10px 15px;
+    /* border: 4px solid transparent; */
+    border: none;
+    border-radius: 50px;
+    font-size: 1em;
+    color: #666;
+    background-color: #EAF2FD;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    align-items: center;
+    display: flex;
+}
+.button:hover {
+    background-color: #cdd7e4;
+    /* border-color: #6DE2B4; */
+}
+.button img {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}
+.news-container {
+    padding: 20px;
+    font-weight: bold;
+    color: #EAF2FD;
+    background-color: #1c253a;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: auto;
+    max-width: 80%;
+    text-align: left;
+}
+.news-container h3 {
+    margin-bottom: 10px;
+    padding: 0;
+    margin: 0;
+}
+.news-container p {
+    margin: 0;
+    padding: 0;
+}
+.figure-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    max-width: 1000px; 
+    padding-left: 5%; 
+    padding-right: 5%; 
+    padding-bottom: 30px;
+    gap: 10px; 
+    margin: auto; 
+}
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.video-item {
+    width: 20%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.video-item video {
+    width: 100%;
+    border-radius: 20px;
+}
+.video-item img {
+    width: 100%;
+    border-radius: 20px;
+}
+.small-video-item {
+    width: 16%;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.small-video-item video {
+    width: 100%;
+    border-radius: 20px;
+}
+.highlight {
+    background-color: #1c253a; 
+    padding-bottom: 30px;
+}
+.highlight video {
+    background-color: #131927;
+}
+.pc-only {
+    display: block;
+}
+.mobile-only {
+    display: none;
+}
+@media (max-width: 768px) {
+    .video-item {
+        width: 90%;
+    }
+    .small-video-item {
+        width: 90%;
+    }
+    .mobile-only {
+        display: block;
+    }
+    .pc-only {
+        display: none;
+    }
+}
