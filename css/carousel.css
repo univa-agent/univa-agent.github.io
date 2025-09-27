@@ -99,6 +99,57 @@
     transform: scale(1.5);
 }
 
+/* PDF Figures Section */
+.figures-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.figure-item {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.figure-item img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 1px solid #2a3a5a;
+    background: #1c253a;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.figure-item img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.figure-item p {
+    text-align: center;
+    margin-top: 20px;
+    color: #EAF2FD;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .figure-item img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .figure-item p {
+        font-size: 1.1em;
+    }
+}
+
 /* Video carousel specific styles */
 .video-carousel {
     width: 100%;
@@ -184,4 +235,55 @@
     margin-top: 10px;
     color: #EAF2FD;
     font-size: 1.1em;
+}
+
+/* PDF Figures Section */
+.figures-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.figure-item {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.figure-item img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 1px solid #2a3a5a;
+    background: #1c253a;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.figure-item img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.figure-item p {
+    text-align: center;
+    margin-top: 20px;
+    color: #EAF2FD;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .figure-item img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .figure-item p {
+        font-size: 1.1em;
+    }
 }

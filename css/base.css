@@ -55,6 +55,10 @@ p {
     color: #93a1b3;
     padding-left: 30px;
     padding-right: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
 }
 .important-desc {
     font-size: 1.2rem;
