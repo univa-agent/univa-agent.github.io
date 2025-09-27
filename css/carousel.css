@@ -10,12 +10,12 @@
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
+    overflow: hidden;
 }
 
 .carousel-inner {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    gap: 10%;
 }
 
 .carousel-item {
@@ -97,4 +97,46 @@
 
 .dot.active {
     transform: scale(1.5);
+}
+
+/* Video carousel specific styles */
+.video-carousel {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 30px;
+}
+
+.video-carousel .carousel {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-carousel .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.video-carousel .carousel-item {
+    min-width: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+
+.video-carousel .carousel-item video {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 20px;
+}
+
+.video-carousel .carousel-item p {
+    text-align: center;
+    margin-top: 10px;
+    color: #EAF2FD;
+    font-size: 1.1em;
 }

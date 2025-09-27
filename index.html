@@ -29,56 +29,70 @@
     <h2 style="padding-top: 30px;">「UniVA」Unified Video Agent System</h2>
     <p class="desc">UniVA is a revolutionary multi-agent system that orchestrates complex video creation workflows through intelligent planning and execution. <br>The system understands user intent, creates detailed plans, and coordinates multiple AI models to produce professional-quality videos.</p>
     
-    <h2>「Tools Arsenal」State-of-the-Art Models</h2>
-    
-    <div class="video-demos-section" style="margin-top: 40px;">
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo1.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 1</p>
-        </div>
-        
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo2.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 2</p>
-        </div>
-        
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo3.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 3</p>
-        </div>
-        
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo4.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 4</p>
-        </div>
-        
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo5.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 5</p>
-        </div>
-        
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo6.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 6</p>
-        </div>
-        
-        <div class="video-item-full" style="margin-bottom: 30px;">
-            <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-                <source src="asserts/video_demos/demo7.mp4" type="video/mp4">
-            </video>
-            <p style="text-align: center; margin-top: 10px;">Demo 7</p>
+    <h2 style="margin-bottom: 20px;">「Tools Arsenal」State-of-the-Art Models</h2>
+
+    <div class="video-carousel">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo1.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 1</p>
+                </div>
+
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo2.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 2</p>
+                </div>
+
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo3.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 3</p>
+                </div>
+
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo4.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 4</p>
+                </div>
+
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo5.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 5</p>
+                </div>
+
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo6.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 6</p>
+                </div>
+
+                <div class="carousel-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="asserts/video_demos/demo7.mp4" type="video/mp4">
+                    </video>
+                    <p style="text-align: center; margin-top: 10px;">Demo 7</p>
+                </div>
+            </div>
+
+            <div class="carousel-ctrl">
+                <button class="carousel-btn prev" onclick="prevSlide()">
+                    <img src="asserts/icons/prev.svg" alt="Previous">
+                </button>
+                <div class="dots-container"></div>
+                <button class="carousel-btn next" onclick="nextSlide()">
+                    <img src="asserts/icons/next.svg" alt="Next">
+                </button>
+            </div>
         </div>
     </div>
     <script src="js/base.js"></script>

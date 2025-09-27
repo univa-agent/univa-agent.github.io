@@ -5,7 +5,7 @@ function updateCarousel(instant = false) {
     const carouselInner = document.querySelector('.carousel-inner');
     const dots = document.querySelectorAll('.dot');
     const videos = document.querySelectorAll('.carousel-item video');
-    const totalSlides = 8; // 原始轮播项数量
+    const totalSlides = 7; // 原始轮播项数量
 
     // 计算实际显示的索引（用于圆点）- 考虑克隆元素
     let displayIndex = currentIndex - 1; // 减1因为第一个是克隆的
@@ -20,7 +20,7 @@ function updateCarousel(instant = false) {
     }
 
     // 更新滑动
-    carouselInner.style.transform = `translateX(-${currentIndex * 110}%)`;
+    carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
 
     // 更新圆点状态
     dots.forEach((dot, index) => {
@@ -117,7 +117,7 @@ function gotoSlide(index) {
 function createDots() {
     const dotsContainer = document.querySelector('.dots-container');
     const carouselItems = document.querySelectorAll('.carousel-item');
-    const originalCount = 8; // 原始轮播项数量
+    const originalCount = 7; // 原始轮播项数量
 
     // 清空容器（防止重复生成）
     dotsContainer.innerHTML = '';
