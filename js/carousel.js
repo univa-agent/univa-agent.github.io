@@ -27,14 +27,14 @@ function updateCarousel(instant = false) {
         dot.classList.toggle('active', index === displayIndex);
     });
 
-    // 控制当前显示项的所有视频播放
+    // 轮播切换时的视频处理（不自动播放新视频）
     const allItems = document.querySelectorAll('.carousel-item');
     allItems.forEach((item, index) => {
         const itemVideos = item.querySelectorAll('video');
         itemVideos.forEach(video => {
             if (index === currentIndex) {
-                video.currentTime = 0;
-                video.play().catch(e => console.log('Video play failed:', e));
+                // 只更新控制按钮状态，不自动播放新视频
+                updateControlButtons(video);
             } else {
                 video.pause();
             }
@@ -52,13 +52,9 @@ function setupInfiniteLoop() {
     
     // 为克隆元素中的视频添加必要属性
     firstClone.querySelectorAll('video').forEach(video => {
-        video.muted = true;
-        video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
     });
     lastClone.querySelectorAll('video').forEach(video => {
-        video.muted = true;
-        video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
     });
     
@@ -131,44 +127,106 @@ function createDots() {
     }
 }
 
-// 强制播放当前显示项的视频
-function playCurrentVideos() {
+// 播放/暂停切换函数
+function togglePlayPause(button) {
+    const videoContainer = button.closest('.video-container');
+    const video = videoContainer.querySelector('video');
+    const pauseIcon = button.querySelector('.pause-icon');
+    const playIcon = button.querySelector('.play-icon');
+
+    if (video.paused) {
+        // 用户主动点击播放
+        video.play();
+        pauseIcon.style.display = 'block';
+        playIcon.style.display = 'none';
+        video.dataset.userPaused = 'false';
+        video.dataset.userClicked = 'true'; // 标记为用户已点击
+    } else {
+        video.pause();
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = 'block';
+        video.dataset.userPaused = 'true';
+    }
+}
+
+// 静音/取消静音切换函数
+function toggleMute(button) {
+    const videoContainer = button.closest('.video-container');
+    const video = videoContainer.querySelector('video');
+    const volumeOnIcon = button.querySelector('.volume-on-icon');
+    const volumeOffIcon = button.querySelector('.volume-off-icon');
+
+    if (video.muted) {
+        video.muted = false;
+        volumeOnIcon.style.display = 'block';
+        volumeOffIcon.style.display = 'none';
+    } else {
+        video.muted = true;
+        volumeOnIcon.style.display = 'none';
+        volumeOffIcon.style.display = 'block';
+    }
+}
+
+// 更新视频控制按钮状态
+function updateControlButtons(video) {
+    const videoContainer = video.closest('.video-container');
+    const playPauseBtn = videoContainer.querySelector('.play-pause-btn');
+    const muteBtn = videoContainer.querySelector('.mute-btn');
+
+    if (playPauseBtn) {
+        const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+        const playIcon = playPauseBtn.querySelector('.play-icon');
+
+        if (video.paused) {
+            pauseIcon.style.display = 'none';
+            playIcon.style.display = 'block';
+        } else {
+            pauseIcon.style.display = 'block';
+            playIcon.style.display = 'none';
+        }
+    }
+
+    if (muteBtn) {
+        const volumeOnIcon = muteBtn.querySelector('.volume-on-icon');
+        const volumeOffIcon = muteBtn.querySelector('.volume-off-icon');
+
+        if (video.muted) {
+            volumeOnIcon.style.display = 'none';
+            volumeOffIcon.style.display = 'block';
+        } else {
+            volumeOnIcon.style.display = 'block';
+            volumeOffIcon.style.display = 'none';
+        }
+    }
+}
+
+// 轮播切换时的视频处理（不自动播放新视频）
+function handleCarouselVideoSwitch() {
     const allItems = document.querySelectorAll('.carousel-item');
     if (allItems[currentIndex]) {
         const videos = allItems[currentIndex].querySelectorAll('video');
         videos.forEach(video => {
-            video.muted = true;
-            video.setAttribute('muted', '');
-            video.currentTime = 0;
-            // 使用Promise链确保播放
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log('Auto-play prevented:', error);
-                    // 用户交互后重试
-                    document.addEventListener('click', () => {
-                        video.play().catch(e => console.log('Retry play failed:', e));
-                    }, { once: true });
-                });
-            }
+            // 只更新控制按钮状态，不自动播放
+            updateControlButtons(video);
         });
     }
 }
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
+    // 初始化所有视频为不静音状态
+    const allVideos = document.querySelectorAll('.carousel-item video');
+    allVideos.forEach(video => {
+        video.muted = false;
+        video.dataset.userPaused = 'true'; // 默认用户没有播放（需要点击才播放）
+        // 更新控制按钮状态
+        updateControlButtons(video);
+    });
+
     setupInfiniteLoop();
     createDots();
     handleTransitionEnd();
     updateCarousel(true);
-    
-    // 延迟播放确保DOM完全加载
-    setTimeout(playCurrentVideos, 200);
-    
-    // 监听可见性变化
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) {
-            playCurrentVideos();
-        }
-    });
+
+    // 不再自动播放，等待用户交互
 });
