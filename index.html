@@ -180,6 +180,60 @@
         </div>
     </div>
 
+    <h2 style="margin-top: 50px; margin-bottom: 20px;">Video Gallery</h2>
+
+    <div class="video-gallery-carousel">
+        <div class="gallery-carousel">
+            <div class="gallery-carousel-inner">
+                <!-- Gallery Item 1: Object Consistency - Girl Dance -->
+                <div class="gallery-carousel-item">
+                    <h3>Object Consistency - Girl Dance</h3>
+                    <div class="input-output-pair">
+                        <div class="input-side">
+                            <h4>Input</h4>
+                            <img src="asserts/demos/object_consistency/girl_dance/0722213202_1.jpg" alt="Input reference image" class="input-image">
+                            <p class="input-text">I want to generate a 20-second long video with 4 segments. The main subject of the video is a girl dancing. However, the background of each of the 4 segments needs to be different. I need the first segment to be a cyberpunk background, the second segment to be an aesthetic ink dream, the third segment to be a retro film block, and the fourth segment to be an abstract geometric dynamic. The main subject of the four segments should be consistent and the movements should be coherent.</p>
+                        </div>
+                        <div class="output-side">
+                            <h4>Output</h4>
+                            <video class="gallery-video" muted loop playsinline>
+                                <source src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2: Complex Generation - BreadTalk Ad -->
+                <div class="gallery-carousel-item">
+                    <h3>Complex Generation - BreadTalk Ad</h3>
+                    <div class="input-output-pair">
+                        <div class="input-side">
+                            <h4>Input</h4>
+                            <p class="input-text">Please generate a 20-second advertising video based on the following product advertising requirements. 1. Kneading dough in hands, close-up shot, highlighting the texture of the dough. 2. Sprinkling cherry blossom petals on freshly baked bread, slow motion close-up. 3. Customers taste bread in the store and show satisfied smiles. 4. The brand logo appears, with the text: 'BreadTalk'.</p>
+                        </div>
+                        <div class="output-side">
+                            <h4>Output</h4>
+                            <video class="gallery-video" muted loop playsinline>
+                                <source src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Carousel Controls -->
+            <div class="gallery-carousel-ctrl">
+                <button class="gallery-carousel-btn prev" onclick="prevGallerySlide()">
+                    <img src="asserts/icons/prev.svg" alt="Previous">
+                </button>
+                <div class="gallery-dots-container"></div>
+                <button class="gallery-carousel-btn next" onclick="nextGallerySlide()">
+                    <img src="asserts/icons/next.svg" alt="Next">
+                </button>
+            </div>
+        </div>
+    </div>
+
     <h2 style="margin-top: 50px; margin-bottom: 20px;">Technical Details</h2>
 
     <div class="figures-section alternating-layout" style="margin-top: 60px;">
@@ -216,5 +270,6 @@
     <script src="js/base.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/sync_play.js"></script>
+    <script src="js/video_gallery.js"></script>
 </body>
 </html>

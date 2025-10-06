@@ -250,3 +250,158 @@ h1.univa-main-title {
 html {
     scroll-behavior: smooth;
 }
+
+/* Video Gallery Carousel Styles */
+.video-gallery-carousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gallery-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(28, 37, 58, 0.4);
+    border: 1px solid rgba(108, 133, 234, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.gallery-carousel-item {
+    min-width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.gallery-carousel-item h3 {
+    color: #08C5FF;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-output-pair {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.input-side,
+.output-side {
+    flex: 1;
+    background: rgba(19, 25, 39, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(108, 133, 234, 0.1);
+}
+
+.input-side h4,
+.output-side h4 {
+    color: #6DE2B4;
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: 'GeForce';
+}
+
+.input-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(108, 133, 234, 0.3);
+}
+
+.input-text {
+    color: #EAF2FD;
+    font-size: 0.95em;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
+}
+
+.gallery-video {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(108, 133, 234, 0.3);
+    background: #1c253a;
+}
+
+/* Gallery Carousel Controls */
+.gallery-carousel-ctrl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(19, 25, 39, 0.8);
+    border-top: 1px solid rgba(108, 133, 234, 0.2);
+}
+
+.gallery-carousel-btn {
+    background: rgba(108, 133, 234, 0.2);
+    border: 1px solid rgba(108, 133, 234, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-carousel-btn:hover {
+    background: rgba(108, 133, 234, 0.4);
+    transform: scale(1.1);
+}
+
+.gallery-carousel-btn img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+.gallery-dots-container {
+    display: flex;
+    gap: 10px;
+}
+
+.gallery-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(108, 133, 234, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-dot.active {
+    background: #08C5FF;
+    transform: scale(1.2);
+}
+
+/* Responsive design for gallery carousel */
+@media (max-width: 768px) {
+    .input-output-pair {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .gallery-carousel-item {
+        padding: 20px;
+    }
+
+    .input-side,
+    .output-side {
+        padding: 15px;
+    }
+}
