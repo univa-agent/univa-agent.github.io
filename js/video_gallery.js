@@ -27,13 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.classList.toggle('active', index === currentGallerySlide);
         });
 
-        // Pause all videos and play current slide videos
+        // Pause all videos and handle current slide videos with lazy loading
         const allVideos = document.querySelectorAll('.gallery-video');
         allVideos.forEach(video => video.pause());
 
         const currentSlide = galleryItems[currentGallerySlide];
         const currentVideos = currentSlide.querySelectorAll('.gallery-video');
         currentVideos.forEach(video => {
+            // Ensure video is loaded before attempting to play
+            if (window.videoLazyLoader && video.dataset.src && !video.dataset.loaded) {
+                window.videoLazyLoader.loadVideo(video);
+            }
+
+            // Try to play the video (will work better if already loaded)
             video.play().catch(error => {
                 console.log('Auto-play prevented:', error);
             });

@@ -33,6 +33,10 @@ function updateCarousel(instant = false) {
         const itemVideos = item.querySelectorAll('video');
         itemVideos.forEach(video => {
             if (index === currentIndex) {
+                // 确保当前视频的懒加载
+                if (window.videoLazyLoader && video.dataset.src && !video.dataset.loaded) {
+                    window.videoLazyLoader.loadVideo(video);
+                }
                 // 只更新控制按钮状态，不自动播放新视频
                 updateControlButtons(video);
             } else {
