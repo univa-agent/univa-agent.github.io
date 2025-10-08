@@ -73,7 +73,8 @@ def main():
         "asserts/figures/teaser_v4.pdf",
         "asserts/figures/pipe_v3.pdf",
         "asserts/figures/task_v2.pdf",
-        "asserts/figures/mcp_org.pdf"
+        "asserts/figures/mcp_org.pdf",
+        "asserts/figures/mem_v1.pdf"
     ]
 
     # Convert each PDF
