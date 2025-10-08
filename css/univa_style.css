@@ -326,6 +326,15 @@ html {
     margin: 0;
 }
 
+.input-video {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: #1c253a;
+}
+
 .gallery-video {
     width: 100%;
     max-width: 400px;
