@@ -36,8 +36,8 @@
             <div class="carousel-inner">
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo1.mp4">
-                            <source src="asserts/video_demos/demo1.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo1.mp4">
+                            <source data-src="asserts/video_demos/demo1.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -55,8 +55,8 @@
 
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo2.mp4">
-                            <source src="asserts/video_demos/demo2.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo2.mp4">
+                            <source data-src="asserts/video_demos/demo2.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -74,8 +74,8 @@
 
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo3.mp4">
-                            <source src="asserts/video_demos/demo3.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo3.mp4">
+                            <source data-src="asserts/video_demos/demo3.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -93,8 +93,8 @@
 
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo4.mp4">
-                            <source src="asserts/video_demos/demo4.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo4.mp4">
+                            <source data-src="asserts/video_demos/demo4.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -112,8 +112,8 @@
 
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo5.mp4">
-                            <source src="asserts/video_demos/demo5.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo5.mp4">
+                            <source data-src="asserts/video_demos/demo5.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -131,8 +131,8 @@
 
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo6.mp4">
-                            <source src="asserts/video_demos/demo6.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo6.mp4">
+                            <source data-src="asserts/video_demos/demo6.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -150,8 +150,8 @@
 
                 <div class="carousel-item">
                     <div class="video-container">
-                        <video loop playsinline preload="metadata" data-src="asserts/video_demos/demo7.mp4">
-                            <source src="asserts/video_demos/demo7.mp4" type="video/mp4">
+                        <video loop playsinline preload="none" data-src="asserts/video_demos/demo7.mp4">
+                            <source data-src="asserts/video_demos/demo7.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="play-pause-btn" onclick="togglePlayPause(this)">
@@ -196,9 +196,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4">
-                                <source src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4">
+                                    <source data-src="asserts/demos/object_consistency/girl_dance/0722213503_I_want_to_generate_a_20-second_long_video_with_4_s.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -213,9 +220,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4">
-                                <source src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4">
+                                    <source data-src="asserts/demos/complex_generation/bread_talk_ad/0722214643_Please_generate_a_20-second_advertising_video_base.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -228,9 +242,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0827234548_A_cinematic_30-second_pottery_documentary_followin.mp4">
-                                <source src="asserts/demos/0827234548_A_cinematic_30-second_pottery_documentary_followin.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0827234548_A_cinematic_30-second_pottery_documentary_followin.mp4">
+                                    <source data-src="asserts/demos/0827234548_A_cinematic_30-second_pottery_documentary_followin.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,9 +265,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0829163046_Create_a_cinematic_story-based_video_of_an_elderly.mp4">
-                                <source src="asserts/demos/0829163046_Create_a_cinematic_story-based_video_of_an_elderly.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0829163046_Create_a_cinematic_story-based_video_of_an_elderly.mp4">
+                                    <source data-src="asserts/demos/0829163046_Create_a_cinematic_story-based_video_of_an_elderly.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -259,9 +287,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0911121524.mp4">
-                                <source src="asserts/demos/0911121524.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0911121524.mp4">
+                                    <source data-src="asserts/demos/0911121524.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -275,9 +310,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0829192612_Create_a_prequel_story_showing_the_origins_of_a_yo.mp4">
-                                <source src="asserts/demos/0829192612_Create_a_prequel_story_showing_the_origins_of_a_yo.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0829192612_Create_a_prequel_story_showing_the_origins_of_a_yo.mp4">
+                                    <source data-src="asserts/demos/0829192612_Create_a_prequel_story_showing_the_origins_of_a_yo.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,9 +332,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0916141129_Create_a_professional_story_video_with_4_scenes:_1.mp4">
-                                <source src="asserts/demos/0916141129_Create_a_professional_story_video_with_4_scenes:_1.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0916141129_Create_a_professional_story_video_with_4_scenes:_1.mp4">
+                                    <source data-src="asserts/demos/0916141129_Create_a_professional_story_video_with_4_scenes:_1.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -306,9 +355,16 @@
                         </div>
                         <div class="output-side">
                             <h4>Output</h4>
-                            <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0829172505_Create_an_animated_short_film_in_traditional_Chine.mp4">
-                                <source src="asserts/demos/0829172505_Create_an_animated_short_film_in_traditional_Chine.mp4" type="video/mp4">
-                            </video>
+                            <div class="gallery-video-container" style="position: relative;">
+                                <video class="gallery-video" muted loop playsinline preload="none" data-src="asserts/demos/0829172505_Create_an_animated_short_film_in_traditional_Chine.mp4">
+                                    <source data-src="asserts/demos/0829172505_Create_an_animated_short_film_in_traditional_Chine.mp4" type="video/mp4">
+                                </video>
+                                <div class="gallery-video-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                                    <button class="gallery-play-btn" onclick="toggleGalleryVideo(this)" style="background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                                        <img src="asserts/icons/play.svg" alt="Play" style="width: 20px; height: 20px; margin: 0 auto;">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -139,10 +139,23 @@ function togglePlayPause(button) {
     const playIcon = button.querySelector('.play-icon');
 
     if (video.paused) {
-        // 用户主动点击播放
-        video.play();
-        pauseIcon.style.display = 'block';
-        playIcon.style.display = 'none';
+        // 如果视频还未加载，先加载视频
+        if (!video.dataset.loaded && video.dataset.src) {
+            if (window.videoLazyLoader) {
+                window.videoLazyLoader.loadVideo(video);
+            }
+            // 等待视频加载完成后再播放
+            video.addEventListener('canplay', () => {
+                video.play();
+                pauseIcon.style.display = 'block';
+                playIcon.style.display = 'none';
+            }, { once: true });
+        } else {
+            // 视频已加载，直接播放
+            video.play();
+            pauseIcon.style.display = 'block';
+            playIcon.style.display = 'none';
+        }
         video.dataset.userPaused = 'false';
         video.dataset.userClicked = 'true'; // 标记为用户已点击
     } else {

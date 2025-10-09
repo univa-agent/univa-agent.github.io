@@ -27,22 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.classList.toggle('active', index === currentGallerySlide);
         });
 
-        // Pause all videos and handle current slide videos with lazy loading
+        // Pause all videos and only load current slide videos (don't auto-play)
         const allVideos = document.querySelectorAll('.gallery-video');
         allVideos.forEach(video => video.pause());
 
         const currentSlide = galleryItems[currentGallerySlide];
         const currentVideos = currentSlide.querySelectorAll('.gallery-video');
         currentVideos.forEach(video => {
-            // Ensure video is loaded before attempting to play
+            // Only load the video, don't auto-play
             if (window.videoLazyLoader && video.dataset.src && !video.dataset.loaded) {
                 window.videoLazyLoader.loadVideo(video);
             }
-
-            // Try to play the video (will work better if already loaded)
-            video.play().catch(error => {
-                console.log('Auto-play prevented:', error);
-            });
         });
     }
 
@@ -80,9 +75,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Optional: Auto-advance carousel every 10 seconds
-    setInterval(() => {
-        currentGallerySlide = (currentGallerySlide + 1) % totalGallerySlides;
-        updateGalleryCarousel();
-    }, 10000);
+    // Optional: Auto-advance carousel every 10 seconds (disabled to prevent unwanted loading)
+    // setInterval(() => {
+    //     currentGallerySlide = (currentGallerySlide + 1) % totalGallerySlides;
+    //     updateGalleryCarousel();
+    // }, 10000);
 });
+
+// Global function to toggle gallery video playback
+window.toggleGalleryVideo = function(button) {
+    const container = button.closest('.gallery-video-container');
+    const video = container.querySelector('video');
+    const playIcon = button.querySelector('img');
+
+    if (video.paused) {
+        // If video hasn't been loaded yet, load it first
+        if (!video.dataset.loaded && video.dataset.src) {
+            if (window.videoLazyLoader) {
+                window.videoLazyLoader.loadVideo(video);
+            }
+            // Wait for video to load, then play
+            video.addEventListener('canplay', () => {
+                video.play();
+                playIcon.src = 'asserts/icons/pause.svg';
+                button.title = 'Pause';
+            }, { once: true });
+        } else {
+            // Video already loaded, just play
+            video.play();
+            playIcon.src = 'asserts/icons/pause.svg';
+            button.title = 'Pause';
+        }
+    } else {
+        // Pause the video
+        video.pause();
+        playIcon.src = 'asserts/icons/play.svg';
+        button.title = 'Play';
+    }
+};

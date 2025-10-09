@@ -13,6 +13,9 @@ class VideoLazyLoader {
         // Add loading indicators to videos
         this.addLoadingIndicators();
 
+        // Add placeholders for unloaded videos
+        this.addPlaceholders();
+
         // Handle gallery carousel visibility changes
         this.setupGalleryObserver();
     }
@@ -27,37 +30,36 @@ class VideoLazyLoader {
         this.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    this.loadVideo(entry.target);
-                    this.observer.unobserve(entry.target);
+                    // Only add loading indicators, don't auto-load
+                    // this.loadVideo(entry.target);
+                    // this.observer.unobserve(entry.target);
                 }
             });
         }, options);
 
-        // Observe all videos with data-src attribute
-        this.videos.forEach(video => {
-            this.observer.observe(video);
-        });
+        // Don't auto-observe videos - let user interaction trigger loading
+        // this.videos.forEach(video => {
+        //     this.observer.observe(video);
+        // });
     }
 
     setupGalleryObserver() {
-        // Special handling for gallery videos - only load when carousel item is active
-        const galleryObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const video = entry.target.querySelector('video[data-src]');
-                    if (video) {
-                        this.loadVideo(video);
-                    }
-                }
-            });
-        }, {
-            threshold: 0.5 // Load when 50% visible
-        });
+        // Special handling for gallery videos - only load when user interacts
+        // Observer disabled to prevent auto-loading
+        // const galleryObserver = new IntersectionObserver((entries) => {
+        //     entries.forEach(entry => {
+        //         if (entry.isIntersecting) {
+        //             // Don't auto-load, just prepare for user interaction
+        //         }
+        //     });
+        // }, {
+        //     threshold: 0.5
+        // });
 
-        // Observe gallery carousel items
-        document.querySelectorAll('.gallery-carousel-item').forEach(item => {
-            galleryObserver.observe(item);
-        });
+        // Don't auto-observe gallery items
+        // document.querySelectorAll('.gallery-carousel-item').forEach(item => {
+        //     galleryObserver.observe(item);
+        // });
     }
 
     loadVideo(video) {
@@ -195,6 +197,60 @@ class VideoLazyLoader {
             rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
+    }
+
+    // Method to show placeholder for unloaded videos
+    showPlaceholder(video) {
+        const container = video.closest('.gallery-video-container') || video.closest('.video-container');
+        if (container && !video.dataset.loaded) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'video-placeholder';
+            placeholder.innerHTML = `
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #93a1b3;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">▶</div>
+                    <div style="font-size: 14px;">点击播放</div>
+                </div>
+            `;
+            placeholder.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(28, 37, 58, 0.8);
+                z-index: 5;
+                cursor: pointer;
+            `;
+
+            container.appendChild(placeholder);
+
+            // Remove placeholder when video loads
+            const removePlaceholder = () => {
+                if (placeholder.parentNode) {
+                    placeholder.remove();
+                }
+            };
+
+            video.addEventListener('canplay', removePlaceholder, { once: true });
+            video.addEventListener('error', removePlaceholder, { once: true });
+
+            // Click placeholder to load video
+            placeholder.addEventListener('click', () => {
+                if (!video.dataset.loaded) {
+                    this.loadVideo(video);
+                }
+                removePlaceholder();
+            });
+        }
+    }
+
+    addPlaceholders() {
+        // Add placeholders to all unloaded videos
+        this.videos.forEach(video => {
+            if (!video.dataset.loaded) {
+                this.showPlaceholder(video);
+            }
+        });
     }
 }
 
