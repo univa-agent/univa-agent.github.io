@@ -27,17 +27,83 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.classList.toggle('active', index === currentGallerySlide);
         });
 
-        // Pause all videos and only load current slide videos (don't auto-play)
-        const allVideos = document.querySelectorAll('.gallery-video');
-        allVideos.forEach(video => video.pause());
+        // Handle video playback for current slide
+        handleSlideVideoPlayback();
+    }
 
+    // Handle video playback for current slide
+    function handleSlideVideoPlayback() {
         const currentSlide = galleryItems[currentGallerySlide];
-        const currentVideos = currentSlide.querySelectorAll('.gallery-video');
-        currentVideos.forEach(video => {
-            // Only load the video, don't auto-play
-            if (window.videoLazyLoader && video.dataset.src && !video.dataset.loaded) {
-                window.videoLazyLoader.loadVideo(video);
+
+        // Pause all videos first
+        const allVideos = document.querySelectorAll('.gallery-carousel-item video');
+        allVideos.forEach(video => {
+            video.pause();
+        });
+
+        // Handle input videos (click to play)
+        const inputVideos = currentSlide.querySelectorAll('.input-side video');
+        inputVideos.forEach(video => {
+            // Set up click to play
+            video.addEventListener('click', function() {
+                if (this.paused) {
+                    this.play();
+                } else {
+                    this.pause();
+                }
+            });
+
+            // Add play button overlay for input videos
+            if (!video.nextElementSibling || !video.nextElementSibling.classList.contains('input-video-play-btn')) {
+                const playBtn = document.createElement('div');
+                playBtn.className = 'input-video-play-btn';
+                playBtn.innerHTML = '▶';
+                playBtn.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 50px;
+                    height: 50px;
+                    background: rgba(0,0,0,0.7);
+                    color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    font-size: 20px;
+                    z-index: 10;
+                `;
+
+                const container = video.parentElement;
+                container.style.position = 'relative';
+                container.appendChild(playBtn);
+
+                playBtn.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                        playBtn.style.display = 'none';
+                    }
+                });
+
+                video.addEventListener('pause', function() {
+                    playBtn.style.display = 'flex';
+                });
+
+                video.addEventListener('play', function() {
+                    playBtn.style.display = 'none';
+                });
             }
+        });
+
+        // Handle output videos (auto play)
+        const outputVideos = currentSlide.querySelectorAll('.output-side video');
+        outputVideos.forEach(video => {
+            // Auto play output videos
+            video.play().catch(e => {
+                console.log('Auto-play prevented:', e);
+            });
         });
     }
 
@@ -63,9 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
     createGalleryDots();
     updateGalleryCarousel();
 
-    // Auto-play videos in current slide
-    const galleryVideos = document.querySelectorAll('.gallery-video');
-    galleryVideos.forEach(video => {
+    // Set up video attributes
+    const allGalleryVideos = document.querySelectorAll('.gallery-carousel-item video');
+    allGalleryVideos.forEach(video => {
         video.muted = true;
         video.loop = true;
         video.playsInline = true;
@@ -74,42 +140,4 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Video playback error:', e);
         });
     });
-
-    // Optional: Auto-advance carousel every 10 seconds (disabled to prevent unwanted loading)
-    // setInterval(() => {
-    //     currentGallerySlide = (currentGallerySlide + 1) % totalGallerySlides;
-    //     updateGalleryCarousel();
-    // }, 10000);
 });
-
-// Global function to toggle gallery video playback
-window.toggleGalleryVideo = function(button) {
-    const container = button.closest('.gallery-video-container');
-    const video = container.querySelector('video');
-    const playIcon = button.querySelector('img');
-
-    if (video.paused) {
-        // If video hasn't been loaded yet, load it first
-        if (!video.dataset.loaded && video.dataset.src) {
-            if (window.videoLazyLoader) {
-                window.videoLazyLoader.loadVideo(video);
-            }
-            // Wait for video to load, then play
-            video.addEventListener('canplay', () => {
-                video.play();
-                playIcon.src = 'asserts/icons/pause.svg';
-                button.title = 'Pause';
-            }, { once: true });
-        } else {
-            // Video already loaded, just play
-            video.play();
-            playIcon.src = 'asserts/icons/pause.svg';
-            button.title = 'Pause';
-        }
-    } else {
-        // Pause the video
-        video.pause();
-        playIcon.src = 'asserts/icons/play.svg';
-        button.title = 'Play';
-    }
-};
