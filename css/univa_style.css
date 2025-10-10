@@ -251,7 +251,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Video Gallery Carousel Styles */
+/* Video Gallery Carousel Styles - DEPRECATED (replaced with single column layout)
 .video-gallery-carousel {
     max-width: 1200px;
     margin: 0 auto;
@@ -277,6 +277,7 @@ html {
     padding: 30px;
     box-sizing: border-box;
 }
+*/
 
 .gallery-carousel-item h3 {
     color: #08C5FF;
@@ -398,7 +399,7 @@ html {
     background: #1c253a;
 }
 
-/* Gallery Carousel Controls */
+/* Gallery Carousel Controls - DEPRECATED (replaced with single column layout)
 .gallery-carousel-ctrl {
     display: flex;
     justify-content: center;
@@ -451,6 +452,35 @@ html {
     background: #08C5FF;
     transform: scale(1.2);
 }
+*/
+
+/* Video Gallery List Styles - Single Column Layout */
+.video-gallery-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gallery-item {
+    background: rgba(28, 37, 58, 0.4);
+    border: 1px solid rgba(108, 133, 234, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:last-child {
+    margin-bottom: 0;
+}
+
+.gallery-item h3 {
+    color: #08C5FF;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
 /* Responsive design for gallery carousel */
 @media (max-width: 768px) {
@@ -467,4 +497,61 @@ html {
     .output-side {
         padding: 15px;
     }
+}
+
+/* Input video play button styling */
+.input-video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 100;
+    transition: all 0.3s ease;
+    pointer-events: all;
+}
+
+.input-video-play-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Ensure video containers are properly positioned */
+.input-side video,
+.output-side video {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.input-side {
+    position: relative;
+    z-index: 1;
+}
+
+/* Force video to be clickable */
+video {
+    pointer-events: auto;
+}
+
+/* Debug styles - remove these after testing */
+.gallery-video {
+    border: 2px solid #6DE2B4 !important;
+}
+
+.input-video {
+    border: 2px solid #FF6B6B !important;
 }

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Video Test</title>
+    <style>
+        .gallery-item {
+            border: 2px solid red;
+            padding: 20px;
+            margin: 20px;
+        }
+        .input-side, .output-side {
+            border: 2px solid blue;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            width: 45%;
+            vertical-align: top;
+        }
+        video {
+            border: 2px solid green;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+        .input-video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Debug Test</h1>
+
+    <div class="gallery-item">
+        <h3>Test Item 1</h3>
+        <div class="input-side">
+            <h4>Input</h4>
+            <video class="input-video" muted loop playsinline>
+                <source src="https://univa-videodemos.oss-ap-southeast-1.aliyuncs.com/videodemos/1Rkn6rnsgc4_h264.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="output-side">
+            <h4>Output</h4>
+            <video class="gallery-video" muted loop playsinline>
+                <source src="https://univa-videodemos.oss-ap-southeast-1.aliyuncs.com/videodemos/0829163046_Create_a_cinematic_story-based_video_of_an_elderly.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <script>
+        console.log('=== DEBUG VIDEO GALLERY ===');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded');
+
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            console.log('Found gallery items:', galleryItems.length);
+
+            // Check all videos
+            const allVideos = document.querySelectorAll('video');
+            console.log('Total videos found:', allVideos.length);
+
+            allVideos.forEach((video, index) => {
+                console.log(`Video ${index}:`, {
+                    src: video.src,
+                    className: video.className,
+                    parentClass: video.parentElement.className,
+                    muted: video.muted,
+                    loop: video.loop,
+                    playsInline: video.playsInline,
+                    paused: video.paused,
+                    readyState: video.readyState
+                });
+
+                // Set up video attributes
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.preload = 'metadata';
+
+                video.addEventListener('error', (e) => {
+                    console.error(`Video ${index} error:`, video.src, e);
+                });
+
+                video.addEventListener('loadedmetadata', () => {
+                    console.log(`Video ${index} metadata loaded:`, video.duration);
+                });
+            });
+
+            // Set up input videos
+            const inputVideos = document.querySelectorAll('.input-side video');
+            console.log('Input videos found:', inputVideos.length);
+
+            inputVideos.forEach((video, index) => {
+                console.log(`Setting up input video ${index}`);
+
+                // Add play button
+                const playBtn = document.createElement('div');
+                playBtn.className = 'input-video-play-btn';
+                playBtn.innerHTML = '▶';
+
+                const container = video.parentElement;
+                container.style.position = 'relative';
+                container.appendChild(playBtn);
+
+                // Click handlers
+                video.addEventListener('click', function() {
+                    console.log(`Input video ${index} clicked, paused:`, this.paused);
+                    if (this.paused) {
+                        this.play().then(() => {
+                            console.log(`Input video ${index} started playing`);
+                        }).catch(e => {
+                            console.error(`Input video ${index} play failed:`, e);
+                        });
+                    } else {
+                        this.pause();
+                    }
+                });
+
+                playBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log(`Play button ${index} clicked`);
+                    if (video.paused) {
+                        video.play().then(() => {
+                            console.log(`Input video ${index} started via button`);
+                            playBtn.style.display = 'none';
+                        }).catch(e => {
+                            console.error(`Input video ${index} button play failed:`, e);
+                        });
+                    }
+                });
+
+                video.addEventListener('play', () => {
+                    console.log(`Input video ${index} playing`);
+                    playBtn.style.display = 'none';
+                });
+
+                video.addEventListener('pause', () => {
+                    console.log(`Input video ${index} paused`);
+                    playBtn.style.display = 'flex';
+                });
+            });
+
+            // Set up output videos
+            const outputVideos = document.querySelectorAll('.output-side video');
+            console.log('Output videos found:', outputVideos.length);
+
+            outputVideos.forEach((video, index) => {
+                console.log(`Setting up output video ${index}`);
+
+                // Check if in viewport
+                const rect = video.getBoundingClientRect();
+                const isInViewport = rect.top >= 0 && rect.left >= 0 &&
+                                   rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                                   rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+
+                console.log(`Output video ${index} viewport check:`, {
+                    rect: rect,
+                    isInViewport: isInViewport,
+                    windowHeight: window.innerHeight,
+                    documentHeight: document.documentElement.clientHeight
+                });
+
+                // Try to play if in viewport
+                if (isInViewport) {
+                    console.log(`Output video ${index} is in viewport, attempting to play`);
+                    video.play().then(() => {
+                        console.log(`Output video ${index} started playing immediately`);
+                    }).catch(e => {
+                        console.log(`Output video ${index} immediate play prevented:`, e.message);
+                    });
+                }
+
+                // Set up intersection observer
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        console.log(`Output video ${index} intersection:`, entry.isIntersecting);
+                        if (entry.isIntersecting) {
+                            console.log(`Output video ${index} is intersecting, attempting to play`);
+                            video.play().then(() => {
+                                console.log(`Output video ${index} started playing via observer`);
+                            }).catch(e => {
+                                console.log(`Output video ${index} observer play prevented:`, e.message);
+                            });
+                        } else {
+                            video.pause();
+                            console.log(`Output video ${index} paused (out of viewport)`);
+                        }
+                    });
+                }, {
+                    threshold: 0.3
+                });
+
+                observer.observe(video);
+                console.log(`Output video ${index} observer attached`);
+            });
+
+            console.log('=== SETUP COMPLETE ===');
+        });
+    </script>
+</body>
+</html>

@@ -1,59 +1,50 @@
-// Video Gallery Carousel functionality
+// Video Gallery functionality for single column layout
 document.addEventListener('DOMContentLoaded', function() {
-    let currentGallerySlide = 0;
-    const galleryCarouselInner = document.querySelector('.gallery-carousel-inner');
-    const galleryItems = document.querySelectorAll('.gallery-carousel-item');
-    const totalGallerySlides = galleryItems.length;
-    const galleryDotsContainer = document.querySelector('.gallery-dots-container');
+    console.log('Video Gallery JS loaded');
 
-    // Create gallery dots
-    function createGalleryDots() {
-        for (let i = 0; i < totalGallerySlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('gallery-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToGallerySlide(i));
-            galleryDotsContainer.appendChild(dot);
-        }
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    console.log('Found', galleryItems.length, 'gallery items');
+
+    if (galleryItems.length === 0) {
+        console.error('No gallery items found! Check if HTML structure is correct.');
+        return;
     }
 
-    // Update gallery carousel position
-    function updateGalleryCarousel() {
-        galleryCarouselInner.style.transform = `translateX(-${currentGallerySlide * 100}%)`;
+    // Set up all videos with proper attributes first
+    const allVideos = document.querySelectorAll('.gallery-item video');
+    allVideos.forEach((video, index) => {
+        console.log('Setting up video', index, video.src ? 'with src' : 'without src');
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
 
-        // Update dots
-        const dots = document.querySelectorAll('.gallery-dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentGallerySlide);
+        video.addEventListener('error', (e) => {
+            console.error('Video error:', video.src, e);
         });
+    });
 
-        // Handle video playback for current slide
-        handleSlideVideoPlayback();
-    }
-
-    // Handle video playback for current slide
-    function handleSlideVideoPlayback() {
-        const currentSlide = galleryItems[currentGallerySlide];
-
-        // Pause all videos first
-        const allVideos = document.querySelectorAll('.gallery-carousel-item video');
-        allVideos.forEach(video => {
-            video.pause();
-        });
+    galleryItems.forEach((item, index) => {
+        console.log('Processing item', index);
 
         // Handle input videos (click to play)
-        const inputVideos = currentSlide.querySelectorAll('.input-side video');
-        inputVideos.forEach(video => {
-            // Set up click to play
+        const inputVideos = item.querySelectorAll('.input-side video');
+        console.log('Found', inputVideos.length, 'input videos');
+
+        inputVideos.forEach((video, vIndex) => {
+            console.log('Setting up input video', vIndex);
+
+            // Set up click handler
             video.addEventListener('click', function() {
+                console.log('Input video clicked, current state:', this.paused ? 'paused' : 'playing');
                 if (this.paused) {
-                    this.play();
+                    this.play().catch(e => console.error('Play failed:', e));
                 } else {
                     this.pause();
                 }
             });
 
-            // Add play button overlay for input videos
+            // Add play button overlay if not exists
             if (!video.nextElementSibling || !video.nextElementSibling.classList.contains('input-video-play-btn')) {
                 const playBtn = document.createElement('div');
                 playBtn.className = 'input-video-play-btn';
@@ -80,64 +71,66 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.style.position = 'relative';
                 container.appendChild(playBtn);
 
-                playBtn.addEventListener('click', function() {
+                playBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Play button clicked');
                     if (video.paused) {
-                        video.play();
+                        video.play().catch(e => console.error('Play failed:', e));
                         playBtn.style.display = 'none';
                     }
+                });
+
+                video.addEventListener('play', function() {
+                    playBtn.style.display = 'none';
                 });
 
                 video.addEventListener('pause', function() {
                     playBtn.style.display = 'flex';
                 });
 
-                video.addEventListener('play', function() {
-                    playBtn.style.display = 'none';
+                video.addEventListener('ended', function() {
+                    playBtn.style.display = 'flex';
                 });
             }
         });
 
-        // Handle output videos (auto play)
-        const outputVideos = currentSlide.querySelectorAll('.output-side video');
-        outputVideos.forEach(video => {
-            // Auto play output videos
-            video.play().catch(e => {
-                console.log('Auto-play prevented:', e);
+        // Handle output videos (auto play when visible)
+        const outputVideos = item.querySelectorAll('.output-side video');
+        console.log('Found', outputVideos.length, 'output videos');
+
+        outputVideos.forEach((video, vIndex) => {
+            console.log('Setting up output video', vIndex);
+
+            // Try to play immediately if in viewport
+            const rect = video.getBoundingClientRect();
+            const isInViewport = rect.top >= 0 && rect.left >= 0 &&
+                               rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                               rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+
+            if (isInViewport) {
+                console.log('Output video is in viewport, attempting to play');
+                video.play().catch(e => console.log('Immediate play prevented:', e));
+            }
+
+            // Set up intersection observer for scroll-based playback
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        console.log('Output video is intersecting, attempting to play');
+                        video.play().catch(e => {
+                            console.log('Auto-play prevented:', e);
+                        });
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, {
+                threshold: 0.3 // Play when 30% of video is visible
             });
-        });
-    }
 
-    // Go to specific slide
-    function goToGallerySlide(index) {
-        currentGallerySlide = index;
-        updateGalleryCarousel();
-    }
-
-    // Next slide
-    window.nextGallerySlide = function() {
-        currentGallerySlide = (currentGallerySlide + 1) % totalGallerySlides;
-        updateGalleryCarousel();
-    }
-
-    // Previous slide
-    window.prevGallerySlide = function() {
-        currentGallerySlide = (currentGallerySlide - 1 + totalGallerySlides) % totalGallerySlides;
-        updateGalleryCarousel();
-    }
-
-    // Initialize gallery carousel
-    createGalleryDots();
-    updateGalleryCarousel();
-
-    // Set up video attributes
-    const allGalleryVideos = document.querySelectorAll('.gallery-carousel-item video');
-    allGalleryVideos.forEach(video => {
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-
-        video.addEventListener('error', (e) => {
-            console.error('Video playback error:', e);
+            observer.observe(video);
         });
     });
+
+    console.log('Video gallery setup complete');
 });
