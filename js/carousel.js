@@ -22,13 +22,18 @@ function updateCarousel(instant = false) {
     // 更新滑动
     carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
 
+    // 更新活动状态
+    const allItems = document.querySelectorAll('.carousel-item');
+    allItems.forEach((item, index) => {
+        item.classList.toggle('active', index === currentIndex);
+    });
+
     // 更新圆点状态
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === displayIndex);
     });
 
     // 轮播切换时的视频处理（不自动播放新视频）
-    const allItems = document.querySelectorAll('.carousel-item');
     allItems.forEach((item, index) => {
         const itemVideos = item.querySelectorAll('video');
         itemVideos.forEach(video => {
